@@ -23,10 +23,10 @@ class TestM(unittest.TestCase):
 
     def test_100M_file_size(self):
         """
-        Test if data structure consumption is greater then 10KB
+        Test if data structure consumption is greater then 5KB
         """
         res_word_count = wordcount('100MFile.txt')
-        self.assertLess(sys.getsizeof(res_word_count), 10240)
+        self.assertLess(sys.getsizeof(res_word_count), 5120)
 
     def test_500M_file_size(self):
         """
@@ -40,14 +40,14 @@ class TestM(unittest.TestCase):
         Test if execution time is less than 1m for 1M size file
         """
         t = timeit.Timer(stmt="wordcount('1MFile.txt')", setup="from wordgroup import wordcount")
-        self.assertLess(t.timeit(number=1), 1)
+        self.assertLess(t.timeit(number=1), 30)
 
     def test_time_10M_file_size(self):
         """
         Test if execution time is less than 1m for 1M size file
         """
         t = timeit.Timer(stmt="wordcount('10MFile.txt')", setup="from wordgroup import wordcount")
-        self.assertLess(t.timeit(number=1), 10)
+        self.assertLess(t.timeit(number=1), 60)
 
     def test_time_100M_file_size(self):
         """

@@ -10,7 +10,7 @@ def update_word_count(word, line):
     """
     Update word count in stored values string
     """
-    if re.search(word, line) is not None:
+    if re.search(word + '=', line) is not None:
         m = re.search(word + "\=(\d+)\;", line)
         oldval = m.group(1)
         newval = int(oldval) + 1
