@@ -1,6 +1,6 @@
 import sys
 import re
-import gc
+
 from guppy import hpy
 
 # Measure performance using heap from guppy

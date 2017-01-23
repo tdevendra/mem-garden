@@ -37,14 +37,14 @@ class TestM(unittest.TestCase):
 
     def test_time_1M_file_size(self):
         """
-        Test if execution time is less than 1m for 1M size file
+        Test if execution time is less than 2 min for 1M size file
         """
         t = timeit.Timer(stmt="wordcount('1MFile.txt')", setup="from wordgroup import wordcount")
-        self.assertLess(t.timeit(number=1), 30)
+        self.assertLess(t.timeit(number=1), 120)
 
     def test_time_10M_file_size(self):
         """
-        Test if execution time is less than 1m for 1M size file
+        Test if execution time is less than 20 min for 1M size file
         """
         t = timeit.Timer(stmt="wordcount('10MFile.txt')", setup="from wordgroup import wordcount")
         self.assertLess(t.timeit(number=1), 60)
