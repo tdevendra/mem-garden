@@ -3,8 +3,8 @@ import os, sys
 
 def mmfile(filename, dump, size):
     """
-	  Create a file of certain size
-	  """
+    Create a file of certain size
+    """
     f = open(filename, 'w')
     filesize = 0
     while(filesize < size):
