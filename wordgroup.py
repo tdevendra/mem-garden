@@ -44,27 +44,28 @@ def wordcount(filename):
             d[letter] = word + '=1;'
     return d
 
-if len(sys.argv) != 2:
-    print("Usage: python wordgroup.py <file>")
-    exit(-1)
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Usage: python wordgroup.py <file>")
+        exit(-1)
 
-h.setref()
-res = wordcount(sys.argv[1])
-print "Data Structure res (Size in bytes):"
-print sys.getsizeof(res)
-counts = []
-for l in res:
-    wordncounts = res[l].split(';')
-    counts.extend(wordncounts)
-print "Data Structure counts (Size in bytes):"
-print sys.getsizeof(counts)
-print ""
-print "Words and their occurence counts"
-for c in counts:
-    if c != '':
-        print c
+    h.setref()
+    res = wordcount(sys.argv[1])
+    print "Data Structure res (Size in bytes):"
+    print sys.getsizeof(res)
+    counts = []
+    for l in res:
+        wordncounts = res[l].split(';')
+        counts.extend(wordncounts)
+    print "Data Structure counts (Size in bytes):"
+    print sys.getsizeof(counts)
+    print ""
+    print "Words and their occurence counts"
+    for c in counts:
+        if c != '':
+            print c
 
-# Print memory usage details
-print ""
-print "Program memory usage details:"
-print h.heap()
+    # Print memory usage details
+    print ""
+    print "Program memory usage details:"
+    print h.heap()
