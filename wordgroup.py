@@ -2,12 +2,11 @@ import sys
 import re
 import gc
 from guppy import hpy
-import pdb
 
+# Measure performance using heap from guppy
 h = hpy()
-#h.setref()
 
-def updatecount(word, line):
+def update_word_count(word, line):
     """
     Update word count in stored values string
     """
@@ -24,7 +23,7 @@ def updatecount(word, line):
 
 def wordcount(filename):
     """
-    Count and map word occurence
+    Count and map word occurence in file
     """
     f = open(filename, 'r')
 
@@ -32,10 +31,14 @@ def wordcount(filename):
     for line in f.readlines():
         line = line.strip()
         word = line.split()[0]
+        # Get first letter of string and index 
+        # dictionary using letter
         letter = word[0]
         if letter in d:
-            countline = d[letter]
-            newcountline = updatecount(word, countline)
+            count_str = d[letter]
+            # Update count for word by replacing word=count
+            # in stored string format
+            newcountline = update_word_count(word, count_str)
             d[letter] = newcountline 
         else:
             d[letter] = word + '=1;'
@@ -45,8 +48,23 @@ if len(sys.argv) != 2:
     print("Usage: python wordgroup.py <file>")
     exit(-1)
 
+h.setref()
 res = wordcount(sys.argv[1])
+print "Data Structure res (Size in bytes):"
 print sys.getsizeof(res)
+counts = []
 for l in res:
-    print res[l].split(';')
+    wordncounts = res[l].split(';')
+    counts.extend(wordncounts)
+print "Data Structure counts (Size in bytes):"
+print sys.getsizeof(counts)
+print ""
+print "Words and their occurence counts"
+for c in counts:
+    if c != '':
+        print c
+
+# Print memory usage details
+print ""
+print "Program memory usage details:"
 print h.heap()
