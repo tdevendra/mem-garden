@@ -28,7 +28,7 @@ def wordcount(filename):
     f = open(filename, 'r')
 
     d = {}
-    for line in f.readlines():
+    for line in f:
         line = line.strip()
         word = line.split()[0]
         # Get first letter of string and index 
