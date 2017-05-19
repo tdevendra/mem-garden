@@ -4,19 +4,6 @@ import time
 import sys
 
 d = {}
-def read_in_chunks(f, size=1024):
-    while True:
-        chunk = f.read(size)
-        if not chunk:
-            break
-        yield chunk
-
-def read_in_chunks2(f, size=1024):
-    chunk = f.read(size)
-    if not chunk:
-        return
-    yield chunk
-
 def calc_words(word):
     word = word.lower()
     if re.search("[A-Za-z0-9]+", word):
